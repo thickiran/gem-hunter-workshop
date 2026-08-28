@@ -1140,6 +1140,8 @@ namespace Match3
                     else
                     {
                         //if there is no match, we revert the swap
+                        //count the attempted move so players can't farm free retries
+                        LevelData.Instance.Moved();
                         (CellContent[m_SwappingCells.Item1].IncomingGem, CellContent[m_SwappingCells.Item2].IncomingGem) = (
                             CellContent[m_SwappingCells.Item2].IncomingGem, CellContent[m_SwappingCells.Item1].IncomingGem);
                         (m_SwappingCells.Item1, m_SwappingCells.Item2) = (m_SwappingCells.Item2, m_SwappingCells.Item1);
