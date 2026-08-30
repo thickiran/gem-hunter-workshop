@@ -23,7 +23,13 @@ the exercise.
 2. While waiting, answer in one sentence each (the agent may help, verify in
    source): Which scenes end up in the build, and who put them there?
    What would CI need beyond this command? (service account + license seat)
-3. Signing/Xcode failures at the very end are fine today — the pipeline is
+3. **Expect the build to stop itself once or twice at first**: the
+   preprocessor reconciles the LevelList asset with Build Settings and throws
+   "Level List had to be rebuilt, restart the build" until they agree. Read
+   `BuildLevelList.OnPreprocessBuild` and explain why one restart isn't always
+   enough (hint: look closely at what `idx` points to when a scene is *added*).
+   Just run the build again.
+4. Signing/Xcode failures at the very end are fine today — the pipeline is
    the lesson, not the provisioning profile.
 
 ## Verify
