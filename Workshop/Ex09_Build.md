@@ -23,12 +23,13 @@ the exercise.
 2. While waiting, answer in one sentence each (the agent may help, verify in
    source): Which scenes end up in the build, and who put them there?
    What would CI need beyond this command? (service account + license seat)
-3. **Expect the build to stop itself once on a fresh clone**: the
-   preprocessor adds the level scenes to Build Settings and throws
-   "Level List had to be rebuilt, restart the build". Run the build again — the
-   second attempt goes through. Read `BuildLevelList.OnPreprocessBuild` and
-   explain why it stops instead of continuing (hint: when does Unity read the
-   scene list for the build?). Bonus: the report also lists ~13 "More than one
+3. **The build may stop itself once**: if your editor's Build Settings scene
+   list has drifted from the LevelList asset (the editor caches that list in
+   `Library/`, so a fresh clone usually goes straight through), the
+   preprocessor repairs it and throws "Level List had to be rebuilt, restart
+   the build". Run the build again — the second attempt goes through. Read
+   `BuildLevelList.OnPreprocessBuild` and explain why it stops instead of
+   continuing (hint: when does Unity read the scene list for the build?). Bonus: the report also lists ~13 "More than one
    global light" errors — they come from the pipeline package opening every
    scene additively while scanning for RuntimePipelineManager components, and
    the build still succeeds. Would you ship CI on a build that logs errors?
