@@ -107,3 +107,6 @@ InitTestScene*.unity*
 
 .env
 Builds/
+
+# IDE
+.idea/
