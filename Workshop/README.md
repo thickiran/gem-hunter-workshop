@@ -40,3 +40,12 @@ break anyone else's afternoon.
 - No fix without a proven root cause; no "done" without terminal evidence.
 - Stuck? 1) this doc, 2) `git diff ex0N-start..ex0N+1-start` shows the
   canonical solution, 3) instructor.
+
+## Track B checkpoint
+`./catchup.sh reskin` is the finished Track B state (branch `reskin-complete`):
+a placeholder 7-gem set under `Assets/Reskin/` (board sprites + HUD icons,
+provenance in `SOURCES.md`) applied to all gem prefabs, global 2D lights
+warmed in every level. Without Scenario access, pull just the set into your
+own branch with `git checkout reskin-complete -- Assets/Reskin`. Before/after
+captures: `Workshop/reskin_before.png`, `Workshop/reskin_after.png` (on that
+branch).
