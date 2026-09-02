@@ -88,8 +88,8 @@ namespace Match3
 
                     if (idx == -1)
                     {
-                        idx = buildLevels.Length - 1;
                         ArrayUtility.Add(ref buildLevels, new EditorBuildSettingsScene(scenePath, true));
+                        idx = buildLevels.Length - 1;
                         buildListChange = true;
                     }
                     else if (!buildLevels[idx].enabled)
@@ -118,12 +118,12 @@ namespace Match3
                     AssetDatabase.SaveAssetIfDirty(levelList);
                 }
 
-                if (levelListChanged || buildListChange)
+                if (buildListChange)
                 {
+                    //the LevelList asset is already saved above; only a Build Settings change needs a restart,
+                    //and a modal dialog here would block CLI-driven builds
                     EditorBuildSettings.scenes = buildLevels;
-                    EditorUtility.DisplayDialog("Build Stopped",
-                        "The scene list from the build had to be changed to match the list in the LevelList assets.\n" +
-                        "the scene list have now been fixed, Please restart the build.", "OK");
+                    Debug.LogWarning("Build Stopped: the Build Settings scene list was changed to match the LevelList asset. Restart the build.");
 
                     throw new BuildFailedException("Level List had to be rebuilt, restart the build");
                 }
