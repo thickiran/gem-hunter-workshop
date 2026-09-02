@@ -23,12 +23,15 @@ the exercise.
 2. While waiting, answer in one sentence each (the agent may help, verify in
    source): Which scenes end up in the build, and who put them there?
    What would CI need beyond this command? (service account + license seat)
-3. **Expect the build to stop itself once or twice at first**: the
-   preprocessor reconciles the LevelList asset with Build Settings and throws
-   "Level List had to be rebuilt, restart the build" until they agree. Read
-   `BuildLevelList.OnPreprocessBuild` and explain why one restart isn't always
-   enough (hint: look closely at what `idx` points to when a scene is *added*).
-   Just run the build again.
+3. **Expect the build to stop itself once on a fresh clone**: the
+   preprocessor adds the level scenes to Build Settings and throws
+   "Level List had to be rebuilt, restart the build". Run the build again — the
+   second attempt goes through. Read `BuildLevelList.OnPreprocessBuild` and
+   explain why it stops instead of continuing (hint: when does Unity read the
+   scene list for the build?). Bonus: the report also lists ~13 "More than one
+   global light" errors — they come from the pipeline package opening every
+   scene additively while scanning for RuntimePipelineManager components, and
+   the build still succeeds. Would you ship CI on a build that logs errors?
 4. Signing/Xcode failures at the very end are fine today — the pipeline is
    the lesson, not the provisioning profile.
 
